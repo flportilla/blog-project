@@ -16,7 +16,11 @@
     "mongoose": "^6.4.3"
   },
   "devDependencies": {
+    "@types/jest": "^28.1.4",
     "jest": "^28.1.2",
     "nodemon": "^2.0.19"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
