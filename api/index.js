@@ -15,7 +15,7 @@ const Blog = mongoose.model('Blog', blogSchema)
 
 const [, , password] = process.argv
 
-const mongoUrl = `mongodb+srv://flportilla:${password}@phonebookdb.ajsn5tf.mongodb.net/?retryWrites=true&w=majority`
+const mongoUrl = `mongodb+srv://flportilla:456@phonebookdb.ajsn5tf.mongodb.net/?retryWrites=true&w=majority`
 
 mongoose.connect(mongoUrl)
 

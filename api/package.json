@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "test": "jest --verbose"
+    "test": "jest --verbose --runInBand --forceExit"
   },
   "author": "flportilla",
   "license": "ISC",
@@ -18,7 +18,8 @@
   "devDependencies": {
     "@types/jest": "^28.1.4",
     "jest": "^28.1.2",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "supertest": "^6.2.4"
   },
   "jest": {
     "testEnvironment": "node"
