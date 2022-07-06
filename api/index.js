@@ -30,17 +30,11 @@ app.get('/api/blogs', async (request, response) => {
   response.json(reviews)
 })
 
-app.post('/api/blogs', (request, response, next) => {
+app.post('/api/blogs', async (request, response, next) => {
   const newBlog = new Blog(request.body)
 
-  const result = newBlog
+  const result = await newBlog
     .save()
-    .then(blog => {
-      if (blog) {
-        response.json(blog)
-      }
-
-    })
     .catch(error => {
       console.log(error)
       console.log('data type incorrect, check POST request body')
