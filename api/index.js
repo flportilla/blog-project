@@ -34,13 +34,10 @@ app.get('/api/blogs', async (request, response) => {
 app.post('/api/blogs', async (request, response, next) => {
   const newBlog = new Blog(request.body)
 
-  const result = await newBlog
-    .save()
-    .catch(error => {
-      console.log(error)
-      console.log('data type incorrect, check POST request body')
-      response.status(401).end()
-    })
+  const result = await newBlog.save()
+
+  response.send(result)
+
 
 })
 
