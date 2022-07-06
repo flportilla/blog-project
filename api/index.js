@@ -23,17 +23,39 @@ app.use(cors());
 app.use(express.json())
 
 app.get('/api/blogs', async (request, response) => {
+
   const reviews = await Blog.find({})
   console.log(`all reviews: ${reviews}`)
+
   response.json(reviews)
 })
 
-app.post('/api/blogs', async (request, response) => {
+app.post('/api/blogs', (request, response, next) => {
   const newBlog = new Blog(request.body)
-  const result = await newBlog.save()
-  console.log(`succesfully added: ${result} to MongoDB`)
-  response.status(201).json(result)
+
+  const result = newBlog
+    .save()
+    .then(blog => {
+      if (blog) {
+        response.json(blog)
+      }
+
+    })
+    .catch(error => {
+      console.log(error)
+      console.log('data type incorrect, check POST request body')
+      response.status(401).end()
+    })
+
 })
+
+app.delete('/api/blogs', async (request, response, next) => {
+
+  const deleteAll = await Blog.deleteMany({})
+  response.status(200).end()
+
+})
+
 
 const PORT = 3003
 app.listen(PORT, () => {
