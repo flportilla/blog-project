@@ -4,7 +4,7 @@ require('express-async-errors')
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
-// 
+
 const blogSchema = new mongoose.Schema({
   title: String,
   author: String,
@@ -27,17 +27,13 @@ app.get('/api/blogs', async (request, response) => {
 
   const reviews = await Blog.find({})
   console.log(`all reviews: ${reviews}`)
-
   response.json(reviews)
 })
 
 app.post('/api/blogs', async (request, response, next) => {
   const newBlog = new Blog(request.body)
-
   const result = await newBlog.save()
-
   response.send(result)
-
 
 })
 
@@ -47,7 +43,6 @@ app.delete('/api/blogs', async (request, response, next) => {
   response.status(200).end()
 
 })
-
 
 const PORT = 3003
 app.listen(PORT, () => {
