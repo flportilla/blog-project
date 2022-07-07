@@ -1,15 +1,19 @@
 GET http://localhost:3003/api/blogs HTTP/1.1
 
 ###
-GET http://localhost:3003/api/blogs/62c5a5e08415d0503c3087bd HTTP/1.1
+GET http://localhost:3003/api/blogs/62c6fe0fb47a7b07b18353a4 HTTP/1.1
+
+###
+DELETE http://localhost:3003/api/blogs/62c6fe0fb47a7b07b18353a4 HTTP/1.1
 
 ###
 POST http://localhost:3003/api/blogs HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "test2",
-  "author": "test",
-  "url": "test",
-  "likes": 0
+  "title": "My first blog2",
+  "author": "flportilla",
+  "url": "localhost, somewhere",
+  "likes": 20210918
 }
+
