@@ -1,23 +1,42 @@
-GET http://localhost:3003/api/blogs HTTP/1.1
-
-###
-GET http://localhost:3003/api/blogs/62c6fe31b47a7b07b18353aa HTTP/1.1
-
-###
-DELETE http://localhost:3003/api/blogs/62c6fe0fb47a7b07b18353a4 HTTP/1.1
-
-###
 POST http://localhost:3003/api/blogs HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "My first blog4",
+  "title": "My second blog",
   "author": "flportilla",
   "url": "localhost, somewhere",
-  "likes": 20210918
+  "likes": 20210918,
+  "userId": "62c8c34cb9a43e9fd0cea6ec"
 }
 ###
-PUT  http://localhost:3003/api/blogs/62c864f7757b6196ac6ff487 HTTP/1.1
+POST http://localhost:3003/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "flportilla2",
+  "name": "Fabian Portilla",
+  "password": "mysupersecretpassword"
+}
+
+###
+GET http://localhost:3003/api/users HTTP/1.1
+
+
+
+
+###
+GET http://localhost:3003/api/blogs HTTP/1.1
+
+###
+GET http://localhost:3003/api/blogs/62c864f7757b6196ac6ff488 HTTP/1.1
+
+###
+DELETE http://localhost:3003/api/blogs/62c86634f2e2334fc91a3f54 HTTP/1.1
+
+###
+DELETE http://localhost:3003/api/blogs/ HTTP/1.1
+###
+PUT  http://localhost:3003/api/blogs/62c864f7757b6196ac6ff488 HTTP/1.1
 Content-Type: application/json
 
 {
