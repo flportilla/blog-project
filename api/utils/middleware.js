@@ -1,5 +1,7 @@
 const logger = require('./logger')
 
+
+//Logs all the requests to the console
 const requestLogger = (request, response, next) => {
   logger.info('Method:', request.method)
   logger.info('Path:  ', request.path)
@@ -8,6 +10,7 @@ const requestLogger = (request, response, next) => {
   next()
 }
 
+//Shows proper error message
 const errorHandler = (error, request, response, next) => {
   logger.error(error.message)
 
@@ -20,6 +23,7 @@ const errorHandler = (error, request, response, next) => {
   next(error)
 }
 
+//Extracts the token from the header
 const tokenExtractor = (request, response, next) => {
   const authorization = request.get('authorization')
   if (authorization && authorization.toLowerCase().startsWith('bearer ')) {

@@ -3,15 +3,6 @@ const Blog = require('../models/blogs')
 const User = require('../models/users')
 const jwt = require('jsonwebtoken')
 
-// const getTokenFrom = request => {
-//   const authorization = request.get('authorization')
-//   if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
-//     return authorization.substring(7)
-//   }
-//   return null
-// }
-
-
 // GET all blogs
 blogsRouter.get('/', async (request, response, next) => {
   const allBlogs = await Blog
@@ -61,7 +52,6 @@ blogsRouter.delete('/:id', async (request, response, next) => {
   const deletedBlog = await Blog.findByIdAndRemove(request.params.id)
   response.status(204).end()
 })
-
 
 //DELETE ALL
 blogsRouter.delete('/', async (request, response, next) => {

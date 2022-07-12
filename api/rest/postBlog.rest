@@ -1,14 +1,11 @@
 POST http://localhost:3003/api/blogs HTTP/1.1
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZscG9ydGlsbGEyIiwiaWQiOiI2MmM4YzM0Y2I5YTQzZTlmZDBjZWE2ZWMiLCJpYXQiOjE2NTc2Mjk1MDR9.mzRiMfJbuwKPCJKpbGmUwC4NIiPdlwTFzgpBR84xNVc
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZscG9ydGlsbGExIiwiaWQiOiI2MmNkNzA0YWY4NDJhNTBjYzg1ODA0ZmQiLCJpYXQiOjE2NTc2MzA4MTV9.ABJNQgtZU18YC07RvHedhMX3kavhHvBTOcUO_-TGDzE
 
 {
-  "title": "My blog",
-  "author": "flportilla",
-  "url": "localhost, somewhere",
-  "likes": 20210918,
-  "userId": "62c8c34cb9a43e9fd0cea6ec"
+  "title": "Blog name",
+  "author": "Author name",
+  "url": "localhost",
+  "likes": 0011223344,
+  "userId": "userId"
 }
-
-###
-DELETE http://localhost:3003/api/blogs HTTP/1.1
