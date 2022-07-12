@@ -3,6 +3,10 @@ const Blog = require('../models/blogs')
 const User = require('../models/users')
 const jwt = require('jsonwebtoken')
 
+const middleware = require('../utils/middleware')
+const userExtractor = middleware.userExtractor
+const tokenExtractor = middleware.tokenExtractor
+
 // GET all blogs
 blogsRouter.get('/', async (request, response, next) => {
   const allBlogs = await Blog
@@ -13,24 +17,16 @@ blogsRouter.get('/', async (request, response, next) => {
 
 // GET one blog by id
 blogsRouter.get('/:id', async (request, response, next) => {
-
   const oneBlog = await Blog.findById(request.params.id)
-  console.log(oneBlog)
   response.json(oneBlog)
 })
 
 // POST a new blog
-blogsRouter.post('/', async (request, response, next) => {
+blogsRouter.post('/', tokenExtractor, userExtractor, async (request, response, next) => {
 
   const { title, author, url, likes } = request.body
-
-  const decodedToken = jwt.verify(request.token, process.env.SECRET)
-  if (!decodedToken.id) {
-    return response.status(401).json({ error: 'token missing or invalid' })
-  }
-
-  const user = await User.findById(decodedToken.id)
-
+  const user = request.user
+  console.log(user)
   const blog = new Blog({
     title: title,
     author: author,
@@ -42,24 +38,15 @@ blogsRouter.post('/', async (request, response, next) => {
 
   user.blogs = user.blogs.concat(savedBlog.id)
   await user.save()
-
   response.status(201).json(savedBlog)
 })
 
 // DELETE a blog by id
-blogsRouter.delete('/:id', async (request, response, next) => {
+blogsRouter.delete('/:id', tokenExtractor, userExtractor, async (request, response, next) => {
 
   const selectedBlog = await Blog.findById(request.params.id)
-
-  const decodedToken = jwt.verify(request.token, process.env.SECRET)
-  if (!decodedToken.id) {
-    return response.status(401).json({ error: 'token missing or invalid' })
-  }
-
-  const user = await User.findById(decodedToken.id)
-
+  const user = request.user
   const blogInUser = user?.blogs.filter(blog => blog.toString() === selectedBlog?.id)
-
   if (blogInUser?.toString() === selectedBlog?.id) {
     const deletedBlog = await Blog.findByIdAndRemove(request.params.id)
     response.status(204).end()
