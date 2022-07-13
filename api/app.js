@@ -8,8 +8,6 @@ const usersRouter = require('./controllers/user')
 const loginRouter = require('./controllers/login')
 
 const middleware = require('./utils/middleware')
-const userExtractor = middleware.userExtractor
-const tokenExtractor = middleware.tokenExtractor
 const logger = require('./utils/logger')
 const config = require('./utils/config')
 
